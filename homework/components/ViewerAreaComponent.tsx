@@ -27,11 +27,13 @@ const UrlRemoveIcon = styled.span`
 const IFrame = styled.iframe`
   width: 915px;
   height: 746px;
+  background: #ffffff;
 `;
 
 const Img = styled.img`
   width: 915px;
   height: 746px;
+  background: #ffffff;
 `;
 
 export const ViewerAreaComponent = () => {
@@ -54,20 +56,28 @@ export const ViewerAreaComponent = () => {
 
   return (
     <Viewer>
-      <ResourceUrlDiv>
-        {selectedResource ? selectedResource.name : ""}
-        <UrlRemoveIcon
-          className="material-symbols-outlined"
-          onClick={handleUrlRemoveBtn}
-        >
-          close
-        </UrlRemoveIcon>
-      </ResourceUrlDiv>
-      {isShowIFrame && (
-        <IFrame src={selectedResource ? selectedResource.url.toString() : ""} />
-      )}
-      {isShowImage && (
-        <Img src={selectedResource ? selectedResource.url.toString() : ""} />
+      {selectedResource && (
+        <>
+          <ResourceUrlDiv>
+            {selectedResource ? selectedResource.name : ""}
+            <UrlRemoveIcon
+              className="material-symbols-outlined"
+              onClick={handleUrlRemoveBtn}
+            >
+              close
+            </UrlRemoveIcon>
+          </ResourceUrlDiv>
+          {isShowIFrame && (
+            <IFrame
+              src={selectedResource ? selectedResource.url.toString() : ""}
+            />
+          )}
+          {isShowImage && (
+            <Img
+              src={selectedResource ? selectedResource.url.toString() : ""}
+            />
+          )}
+        </>
       )}
     </Viewer>
   );

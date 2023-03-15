@@ -47,9 +47,24 @@ export const ResourceAddComponent = () => {
 
   const validateResource = (url: string) => {
     let result = true;
-    if (url === "https://") {
+    if (
+      !url ||
+      url === "https://" ||
+      (!url.startsWith("https://") && !url.startsWith("http://"))
+    ) {
       result = false;
+      toast.error("정확한 url을 입력해주세요.", {
+        position: "top-left",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
+
     return result;
   };
 
